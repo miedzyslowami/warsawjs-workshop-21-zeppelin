@@ -1,5 +1,9 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
+import * as actions from '../actions';
+import * as urls from '../urls';
+
 import {
   withStyles,
   AppBar,
@@ -16,7 +20,6 @@ import {
 import { Menu as MenuIcon } from '@material-ui/icons';
 import { Link } from 'react-router-dom';
 
-import * as urls from '../urls';
 
 const styles = {
   menuButton: {
@@ -32,14 +35,6 @@ const styles = {
 };
 
 class Header extends PureComponent {
-  static propTypes = {
-    classes: PropTypes.shape({
-      menuButton: PropTypes.string.isRequired,
-      flex: PropTypes.string.isRequired,
-    }).isRequired,
-    logout: PropTypes.func.isRequired,
-  };
-
   state = {
     isDrawerOpen: false,
   };
@@ -110,4 +105,8 @@ class Header extends PureComponent {
   }
 }
 
-export default withStyles(styles)(Header);
+const mapDispatchToProps = {
+  logout: actions.logout,
+};
+
+export default withStyles(styles)(connect(null, mapDispatchToProps)(Header));

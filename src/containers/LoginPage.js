@@ -27,8 +27,8 @@ const styles = {
 class LoginPage extends React.Component {
   state = {
       submitting: false,
-      username: '',
-      password: ''
+      username: 'Gosia',
+      password: 'Gosia'
   };
 
   handleChangeUsername = (e) => {
